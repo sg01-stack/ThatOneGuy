@@ -39,4 +39,79 @@ button {
          padding: 32px;
         }
 
-   
+
+.brand h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: -2px;
+}
+.brand h1 span {
+    color: var(--yellow);
+}
+
+.brand p{
+    font-family: 'Great Vibes', cursive;
+    font-size: 24px;
+    color: var(--text-primary);
+    margin-top: 6px;
+
+}
+   .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+   }
+
+
+
+
+   .priorities {
+    margin-top: 120px;
+   }
+
+   .section-label {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+   }
+
+   .priority-grid {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 24px;
+   }
+
+   .task-card{
+    min-width: 0;
+    min-height: 220px;
+    padding: 24px;
+    border-radius: var(--radius);
+    background: linear-gradient(160deg, #18282b , var(--background));
+
+    border: 1px solid rgba(12,229,204,0.22);
+
+
+     transition:
+     transform var(--transition),
+     border-color var(--transition),
+     box-shadow var(--transition);
+   }
+  
+     
+    
+
+    .task-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--cyan);
+        box-shadow: 0 8px 30px rgba(12,229,204,0.8);
+
+    }
+ 
+    .task-card.urgent:hover {
+        border-color: var(--yellow);
+        box-shadow: 0 8px 30px rgba(243, 216, 94, 0.8);
+    }
