@@ -1,107 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">  
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThatOneGuy</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 
-<body
- 
- <div id="app">
-        <header class ="app-header">
+<body>
+
+    <div id="app">
+        <header class="app-header">
             <div class="brand">
-            <h1>ThatOneBro<span>.</span></h1>
-            <p>Procrastinated?Bro's Got ya!</p>
+                <h1>ThatOneBro<span>.</span></h1>
+                <p>Procrastinated?Bro's Got ya!</p>
+            </div>
+            <div class="compass" aria-hidden="true">
             <div class="compass-ring">
-                <span class = "north">N</span>
-                <span class = "east">E</span>
-                <span class = "south">S</span>
-                  <span class = "west">W</span>
+                <span class="north">N</span>
+                <span class="east">E</span>
+                <span class="south">S</span>
+                <span class="west">W</span>
+
+                <div class="compass-needle"></div>
             </div>
-            </div>class="compass-needle"<div>
+        </div>
+        </header>
+        <main id="dashboard" class="screen">
+            <section class="priorities">
+                <h2 class="section-label">
+                    Top Priorities
+                </h2>
 
-            </div>
-            <div>
-                  <header>
-                    <main id="dashboard"
-                    class="screen">
-                    <section class="priorities">
-                        <h2>class="section-label">
-                            Top Priorities
-                        </h2>
+                <div class="priority-grid">
+                    <article class="task-card urgent">
+                        <span class="task-number">01</span>
+                        <h3>Finish assignment</h3>
+                        <p> Due tomorrow</p>
+                        <span class="task-status">Urgent</span>
+                    </article>
 
-                        <div clas="priority-grid">
-                            <article class="task card urgent">
-                                <span class="task-number">01</span>
-                                <h3>Finish assignment</h3>
-                            </p> Due tomorrow</p>
-                            <span class="task-status">Urgent</span>
-                            </article>
+                    <article class="task-card">
+                        <span class="task-number">02</span>
+                        <h3>Build ThatOneBro</h3>
+                        <p>Personal Project</p>
+                        <span class="task-status">In Progress</span>
+                    </article>
 
-                            <article class="task card">
-                                <span class="task-number">02</span>
-                                <h3>Build ThatOneBro</h3>
-                                <p>Personal Project</p>
-                                class="task-status">In Progress</span>
-                            </article>
+                    <article class="task-card">
+                        <span class="task-number">03</span>
+                        <h3>Revise chapter </h3>
 
-                        </article "class=task card">
-                                <span class="task-number">03</span>
-                                <h3>Revise chapter </h3>
 
-                            </div>
-                            <p>45 minute session  </p>
-                            <span class=""task status">Up next</span>
-                           </article>
+                        <p>45 minute session </p>
+                        <span class="task-status">Up next</span>
+                    </article>
 
-                           <article class ="task card">
-                            <span class="task-number">04</span>
-                            <h3>Complete Pending work</h3>
-                            <p>Personal Tasks</p>
-                            <span class="task-status">Planned</span>
-                           </article>
-                               
-                                
-                        
-                        </div>
+                    <article class="task-card">
+                        <span class="task-number">04</span>
+                        <h3>Complete Pending work</h3>
+                        <p>Personal Tasks</p>
+                        <span class="task-status">Planned</span>
+                    </article>
 
-                    </section>
-                 
-                    <button id="start-button" type="button">
-                    <span>Start</span>
-                    <span class ="arrow" 
-                    aria-hidden="true">→</span>
-                   </button>
 
-         </main>
-          <section id="chat-screen" class="screen" hidden>
-           <button id="back button" type="button">
-             ←Back 
-           </button>
-            <div id ="chat-messages"
-            aria-live="polite">
+
+                </div>
+
+            </section>
+
+            <button id="start-button" type="button">
+                <span>Start</span>
+                <span class="arrow" aria-hidden="true">→</span>
+            </button>
+
+        </main>
+        <section id="chat-screen" class="screen" hidden>
+            <button id="back-button" type="button">
+                ←Back
+            </button>
+            <div id="chat-messages" aria-live="polite">
                 <h2>Hey Bro</h2>
                 <p>How's it going t'day?</p>
-                </div>
-                <form id="chat-form">
-                    <input
-                       id ="chat-input"
-                       type="text"
-                       placeholder="Talk to Bro..."
-                       aria-label="your message "
-                       autocomplete="off"
-                       required
-                       >
-                       <button type="submit">Send</button>
-                                       
-                </form>
+            </div>
+            <form id="chat-form">
+                <input id="chat-input" type="text" placeholder="Talk to Bro..." aria-label="your message "
+                    autocomplete="off" required>
+                <button type="submit">Send</button>
 
-          </section>
-   </div>
+            </form>
+
+        </section>
+    </div>
 </body>
-</html>
 
-              
+</html>

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Great+Vibes&family=JetBrains+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root {
+    --background: #0b0c12;
+    --surface: #13171e;
+    --cyan : #0ce5cc;
+    --yellow : #f3d85e;
+    --text-primary : #eafff8;
+    --text-muted : #829692;
+    --radius : 16px;
+    --transition :350ms;
+
+    
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body{
+    background: var(--background);
+    color: var(--text-primary);
+    font-family:'Space Grotesk', sans-serif;
+    min-height: 100vh;
+}
+
+[hidden] {
+    display: none !important;
+}
+button {
+    font:inherit;
+    cursor: pointer;
+    
+}
+
+#app { min-height: 100vh;
+         padding: 32px;
+        }
+
+   
