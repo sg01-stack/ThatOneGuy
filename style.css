@@ -24,6 +24,7 @@ body{
     color: var(--text-primary);
     font-family:'Space Grotesk', sans-serif;
     min-height: 100vh;
+    isolation: isolate;
 }
 
 [hidden] {
@@ -37,6 +38,8 @@ button {
 
 #app { min-height: 100vh;
          padding: 32px;
+         position: relative;
+         z-index: 1;
         }
 
 
@@ -234,4 +237,14 @@ button {
 }
 #start-button:hover .arrow {
     transform: translate(8px);
+}
+
+
+#reactive-background { position: fixed ;
+inset: 0;
+
+width:  100%;
+height: 100%;
+pointer-events: none;
+z-index: -1;
 }
