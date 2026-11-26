@@ -249,3 +249,25 @@ height: 100%;
 pointer-events: none;
 z-index: 0;
 }
+
+.priorities{
+    position: relative;
+    isolation: isolate;
+
+}
+
+#cosmic-web {
+    position: absolute;
+    inset: -30px 0 -40px;
+    width: 100%;
+    height: calc(100% +7-px);
+    z-index: -1;
+    pointer-events: none;
+
+}
+.priority-grid,
+.section-label {
+    position: relative;
+    z-index: 1;
+}
+
