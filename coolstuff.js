@@ -1,0 +1,93 @@
+(()=> {
+    const canvas = document.getElementById("cosmic-web");
+    const ctx =canvas.getContext("2d");
+    const config ={
+        density: 3000,
+        connection: 105,
+        movement: 7,
+        interaction: 126,
+        linewidth:0.55
+    };
+    let width = 0 ;
+    let height = 0;
+
+    let nodes =[];
+
+    const mouse = {
+        x: -999,
+        y: -999,
+        active: false 
+    };
+
+    function resize() {
+        const rect = canvas.getBoundingClientRect();
+        width =rect.width;
+        height =rect.height;
+
+        const dpr = Math.min( window.devicePixelRatio || 1, 1.5);
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        nodes =[];
+        const count = Math.min(240 ,Math.max(80, Math.floor(width * height / config.density)));
+        for (let i = 0; i< count; i++)
+            nodes.push({ x: Math.random() *width, y: Math.random() * height, phase: Math.random() * Math.PI * 2,
+        speed: 0.6 + Math.random() * 0.8 
+        });
+    }
+
+
+
+
+  resize();
+
+window.addEventListener("resize",resize);
+const observer = new
+ResizeObserver(resize);
+observer.observe(canvas);
+
+window.addEventListener("pointermove",(event)=>{
+const rect = canvas.getBoundingClientRect();
+mouse.x = event.clientX - rect.left;
+mouse.y = event.clientY - rect.top;
+mouse.active = true;
+});
+
+document.addEventListener("pointerleave", () => {
+    mouse.active =false;
+});
+
+
+function moveNodes(time) {
+
+    const positions =[];
+    for(const node of nodes) {
+        let x = node.x + Math.sin(
+            time * node.speed + node.phase 
+        ) * config.movement;
+          let y = node.y + Math.cos(time * node.speed * 0.8 + node.phase) *config.movement;
+        if(mouse.active){
+            const dx = x - mouse.x;
+            const dy = y - mouse.y;
+
+            const distance= Math.hypot(dx, dy);
+            if ( distance > 0 && distance < config.interaction) {
+                const force =1- distance/ config.interaction;
+                x += dx /distance*force*16;
+                y += dy /disatance *force*16;
+            }
+        }
+    positions.push({x,y});
+    
+    }
+
+    return positions;
+}
+})
+
+
+
+
+
+
