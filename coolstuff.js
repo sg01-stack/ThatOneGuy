@@ -75,7 +75,7 @@ function moveNodes(time) {
             if ( distance > 0 && distance < config.interaction) {
                 const force =1- distance/ config.interaction;
                 x += dx /distance*force*16;
-                y += dy /disatance *force*16;
+                y += dy /distance *force*16;
             }
         }
     positions.push({x,y});
@@ -84,10 +84,86 @@ function moveNodes(time) {
 
     return positions;
 }
-})
+
+function drawWeb(positions, time) {
+    for (let i= 0;i < positions.length;i++) {
+        const a = positions[i]; 
+
+        for(let j = i + 1; j< positions.length; j++) {
+            const b = positions[j];
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const distance =Math.hypot(dx,dy);
+            if(distance > config.connection) {
+                continue;
+            }
+            const strength = 1 -distance /config.connection ;
+            const bend = Math.sin(time * 2 + i*0.7+j*0.3)*7;
+            const midX= (a.x + b.x)/2;
+            const midY= (a.y + b.y)/2;
+            const yellow = (i+j)%41 ===0;
+            ctx.strokeStyle =yellow ? `rgba(243, 216, 94, ${strength*0.22})` : `rgba(12, 229, 204, ${strength * 0.26})`;
+            ctx.linewidth = config.lineWidth; ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.quadraticCurveTo(midX + bend, midY - bend,b.x, b.y);
+
+            ctx.stroke();
+
+            if((i+j)% 4 === 0)
+            {
+                ctx.strokeStyle =`rgba(12, 229, 204, ${strength *0.09})`;
+                ctx.lineWidth =0.3;
+                ctx.beginPath();
+                ctx.moveTo(a.x, a.y);
+
+                ctx.quadraticCurveTo( midX -bend *2, midY + bend* 2,b.x, b.y );
+
+                ctx.stroke();
+
+        
+
+    }
+
+
+        }
+    }
+}
 
 
 
+function drawIntersections(positions) {
+    for(let i=0; i<positions.length;i++){
+        const point = positions[i];
+        const yellow = i % 29 === 0;
+        ctx.beginPath();
+            ctx.arc(
+                point.x,
+                point.y,
+                yellow?1.3 : 0.7,0,
+                Math.PI * 2
+            );
+            ctx.fillstyle = yellow?"rgba(243, 216,94,0.55)": "rgba(12, 229, 204, 0.45)";
+            ctx.fill();
+
+
+        
+    }
+}
+
+function animate(timestamp) {
+    const time = timestamp * 0.00024
+
+    ctx.clearRect(0,0,width,height);
+
+    const positions = moveNodes(time); drawWeb(positions, time);
+    drawIntersections(positions);
+    requestAnimationFrame(animate);
+
+}
+
+requestAnimationFrame(animate);
+
+})()
 
 
 
