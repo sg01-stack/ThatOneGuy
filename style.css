@@ -1,4 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Great+Vibes&family=JetBrains+Mono&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@font-face {
+    font-family:"WildgraveFreeRegular-rvRDO" ;
+    src: url('./fonts/WildgraveFreeRegular-rvRDO.ttf');
+    format:('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face {
+    font-family:"MarseilleFreeRegular-MAXEB" ;
+    src: url('./fonts/MarseilleFreeRegular-MAXEB.ttf');
+    format:('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+
+
+@font-face {
+    font-family:"VelthovenBlackRegular-xReoV" ;
+    src: url('./fonts/VelthovenBlackRegular-xReoV.ttf');
+    format:('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face {
+    font-family:"AutumnFlowers-9YVZK" ;
+    src: url('./fonts/AutumnFlowers-9YVZK.otf');
+    format:('OpenType');
+    font-weight:normal;
+    font-style:normal;
+}
+
 :root {
     --background: #0b0c12;
     --surface: #13171e;
@@ -22,7 +55,7 @@
 body{
     background: var(--background);
     color: var(--text-primary);
-    font-family:'Space Grotesk', sans-serif;
+    font-family:'Space-Grotesk';
     min-height: 100vh;
     isolation: isolate;
 }
@@ -54,7 +87,7 @@ button {
 }
 
 .brand p{
-    font-family: 'Great Vibes', cursive;
+    font-family: 'AutumnFlowers-9YVZK';
     font-size: 24px;
     color: var(--text-primary);
     margin-top: 6px;
@@ -213,7 +246,7 @@ button {
      
   
     border-radius: var(--radius);
-    font-family: 'Caveat', cursive;
+    font-family: 'VelthovenBlackRegular-xReoV', cursive;
     font-size: 32px;
     font-weight: 700;
 
