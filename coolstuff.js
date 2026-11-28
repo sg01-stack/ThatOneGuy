@@ -2,11 +2,11 @@
     const canvas = document.getElementById("cosmic-web");
     const ctx =canvas.getContext("2d");
     const config ={
-        density: 3000,
-        connection: 105,
-        movement: 7,
+        density: 1100,
+        connection: 94,
+        movement: 4,
         interaction: 126,
-        linewidth:0.55
+        lineWidth:0.4
     };
     let width = 0 ;
     let height = 0;
@@ -30,14 +30,30 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
         nodes =[];
-        const count = Math.min(240 ,Math.max(80, Math.floor(width * height / config.density)));
-        for (let i = 0; i< count; i++)
-            nodes.push({ x: Math.random() *width, y: Math.random() * height, phase: Math.random() * Math.PI * 2,
-        speed: 0.6 + Math.random() * 0.8 
-        });
+        const count = Math.min(340 ,Math.max(140, Math.floor(width * height / config.density)));
+        const clusters =[];
+        for (let i = 0; i< 6; i++){
+            clusters.push({x: width *(i +0.5)/6,
+                y: height * (0.25 + Math.random() * 0.5)
+            });
+        }
+        for(let i =0;i < count;i++){
+            const cluster = clusters[i % clusters.length];
+const angle = Math.random()*Math.PI * 2;
+const radius = Math.sqrt(Math.random())* 115;
+const x= cluster.x + Math.cos(angle) * radius ; const y = cluster.y +Math.sin(angle) * radius;
+nodes.push({
+    x: Math.max(0, Math.min(width,x)),
+    y: Math.max(0, Math.min(height,y)),
+ phase: Math.random()*Math.PI*2,
+    speed: 0.6 + Math.random() * 0.8 });
+
+
+
+       
     }
 
-
+    }
 
 
   resize();
@@ -102,16 +118,17 @@ function drawWeb(positions, time) {
             const midX= (a.x + b.x)/2;
             const midY= (a.y + b.y)/2;
             const yellow = (i+j)%41 ===0;
-            ctx.strokeStyle =yellow ? `rgba(243, 216, 94, ${strength*0.22})` : `rgba(12, 229, 204, ${strength * 0.26})`;
-            ctx.linewidth = config.lineWidth; ctx.beginPath();
+            ctx.strokeStyle =yellow ? `rgba(243, 216, 94, ${strength*0.76})` : `rgba(12, 229, 204, ${strength * 0.87})`;
+            ctx.lineWidth = config.lineWidth; ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.quadraticCurveTo(midX + bend, midY - bend,b.x, b.y);
-
+            ctx.shadowBlur = 5;
+            ctx.shadowColor = yellow ? "#f3d85e" : "#0ce5cc"
             ctx.stroke();
-
+            ctx.shadowBlur = 0;
             if((i+j)% 4 === 0)
             {
-                ctx.strokeStyle =`rgba(12, 229, 204, ${strength *0.09})`;
+                ctx.strokeStyle =`rgba(12, 229, 204, ${strength *0.39})`;
                 ctx.lineWidth =0.3;
                 ctx.beginPath();
                 ctx.moveTo(a.x, a.y);
@@ -129,6 +146,55 @@ function drawWeb(positions, time) {
     }
 }
 
+function drawMicroFilaments(positions,time) {
+    for (let i=0; i<positions.length; i += 2){
+          const a = positions[i];
+          let nearest=null;
+          let nearestDistance = 65;
+
+          for(let j =0; j<positions.length; j++) {
+            if(i===j)
+                continue; 
+            
+          
+
+          const b= positions[j];
+          const distance = Math.hypot(
+            b.x - a.x,
+            b.y - a.y
+          );
+
+          if(distance < nearestDistance)
+          {
+            nearest=b;
+            nearestDistance = distance;
+          }
+        }
+        
+     if (!nearest) 
+    continue;
+  const midX= (a.x + nearest.x)/2;
+  const midY=(a.y+nearest.y)/2;
+  const sway = Math.sin(time * 3 + i) * 8;
+
+  ctx.beginPath();
+  ctx.moveTo(a.x, a.y);
+  ctx.quadraticCurveTo(
+    midX+sway,
+    midY+sway,
+    nearest.x,
+    nearest.y
+  );
+  ctx.lineWidth = 0.25;
+  ctx.strokeStyle = "rgba(12,229, 204, 0.24)";
+
+  ctx.stroke();
+
+}
+
+
+
+}
 
 
 function drawIntersections(positions) {
@@ -142,7 +208,7 @@ function drawIntersections(positions) {
                 yellow?1.3 : 0.7,0,
                 Math.PI * 2
             );
-            ctx.fillstyle = yellow?"rgba(243, 216,94,0.55)": "rgba(12, 229, 204, 0.45)";
+            ctx.fillStyle = yellow?"rgba(243, 216,94,0.98)": "rgba(12, 229, 204, 0.87)";
             ctx.fill();
 
 
@@ -157,6 +223,7 @@ function animate(timestamp) {
 
     const positions = moveNodes(time); drawWeb(positions, time);
     drawIntersections(positions);
+    drawMicroFilaments(positions,time);
     requestAnimationFrame(animate);
 
 }

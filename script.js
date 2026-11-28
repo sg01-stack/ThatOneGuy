@@ -42,12 +42,12 @@ let initialized = false;
 
 const waves = [];
 const waveSettings ={
-    amplitude: 24,
-    wavelength: 85,
-    lifetime:180,
-    speed: 0.035,
-    thickness: 14,
-    blur: 12
+    amplitude: 9,
+    wavelength: 113,
+    lifetime:98,
+    speed: 0.025,
+    thickness: 2,
+    blur: 3
 };
 
 let lastWaveX =0;
@@ -83,7 +83,7 @@ function createWave(x, y)
 
 function drawWave(wave) {
     const progress =wave.age / waveSettings.lifetime;
-    const opacity =(1 - progress) * wave.strength* 0.34;
+    const opacity =(1 - progress) * wave.strength* 0.10;
     ctx.save();
     ctx.translate(wave.x, wave.y);
     ctx.rotate(wave.angle);
@@ -119,10 +119,10 @@ function drawWave(wave) {
 }
 
 function drawGlow(x,y) {
-    const radius =26;
+    const radius =12;
     const gradient = ctx.createRadialGradient( x, y, 0, x, y, radius );
- gradient.addColorStop( 0, "rgba(12, 229, 204, 0.25)");
- gradient.addColorStop( 0.4, "rgba(12, 229, 204, 0.025)");
+ gradient.addColorStop( 0, "rgba(12, 229, 204, 0.12)");
+ gradient.addColorStop( 0.4, "rgba(12, 229, 204, 0.035)");
  gradient.addColorStop( 1, "rgba(12, 229, 204, 0)");
  ctx.fillStyle = gradient;
  ctx.fillRect(
