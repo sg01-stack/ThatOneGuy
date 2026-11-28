@@ -44,10 +44,10 @@ const waves = [];
 const waveSettings ={
     amplitude: 9,
     wavelength: 113,
-    lifetime:98,
+    lifetime:115,
     speed: 0.025,
-    thickness: 2,
-    blur: 3
+    thickness: 1.2,
+    blur: 1
 };
 
 let lastWaveX =0;
@@ -83,7 +83,7 @@ function createWave(x, y)
 
 function drawWave(wave) {
     const progress =wave.age / waveSettings.lifetime;
-    const opacity =(1 - progress) * wave.strength* 0.10;
+    const opacity =(1 - progress) * wave.strength* 0.38;
     ctx.save();
     ctx.translate(wave.x, wave.y);
     ctx.rotate(wave.angle);
@@ -121,7 +121,7 @@ function drawWave(wave) {
 function drawGlow(x,y) {
     const radius =12;
     const gradient = ctx.createRadialGradient( x, y, 0, x, y, radius );
- gradient.addColorStop( 0, "rgba(12, 229, 204, 0.12)");
+ gradient.addColorStop( 0, "rgba(12, 229, 204, 0.35)");
  gradient.addColorStop( 0.4, "rgba(12, 229, 204, 0.035)");
  gradient.addColorStop( 1, "rgba(12, 229, 204, 0)");
  ctx.fillStyle = gradient;
@@ -145,8 +145,8 @@ ctx.clearRect(0, 0, canvas.width, canvas.height);
             follower.y =mouse.y;
             initialized = true;
         } 
-        follower.x += (mouse.x - follower.x) * 0.15;
-        follower.y +=(mouse.y - follower.y) * 0.15;
+        follower.x += (mouse.x - follower.x) * 0.67; //not the meme XD lol 
+        follower.y +=(mouse.y - follower.y) * 0.67;
         createWave(follower.x, follower.y);
         drawGlow(follower.x, follower.y);
 

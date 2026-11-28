@@ -33,14 +33,22 @@
         const count = Math.min(340 ,Math.max(140, Math.floor(width * height / config.density)));
         const clusters =[];
         for (let i = 0; i< 6; i++){
+            const heights = [
+                0.26,
+                0.54,
+                0.29,
+                0.62,
+                0.26,
+                0.52
+            ];
             clusters.push({x: width *(i +0.5)/6,
-                y: height * (0.25 + Math.random() * 0.5)
+                y: height *heights[i]
             });
         }
         for(let i =0;i < count;i++){
             const cluster = clusters[i % clusters.length];
 const angle = Math.random()*Math.PI * 2;
-const radius = Math.sqrt(Math.random())* 115;
+const radius = Math.sqrt(Math.random())* 147;
 const x= cluster.x + Math.cos(angle) * radius ; const y = cluster.y +Math.sin(angle) * radius;
 nodes.push({
     x: Math.max(0, Math.min(width,x)),
@@ -118,7 +126,7 @@ function drawWeb(positions, time) {
             const midX= (a.x + b.x)/2;
             const midY= (a.y + b.y)/2;
             const yellow = (i+j)%41 ===0;
-            ctx.strokeStyle =yellow ? `rgba(243, 216, 94, ${strength*0.76})` : `rgba(12, 229, 204, ${strength * 0.87})`;
+            ctx.strokeStyle =yellow ? `rgba(243, 216, 94, ${strength*0.87})` : `rgba(12, 229, 204, ${strength * 1.02})`;
             ctx.lineWidth = config.lineWidth; ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.quadraticCurveTo(midX + bend, midY - bend,b.x, b.y);
